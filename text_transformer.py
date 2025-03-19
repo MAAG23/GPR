@@ -23,10 +23,10 @@ class TextTransformer:
         # Call OpenAI API
         try:
             response = self.client.chat.completions.create(
-                model="gpt-4",  # Use appropriate model
+                model="gpt-4",
                 messages=[
                     {"role": "system",
-                        "content": f"You are {celebrity['name']}. Respond in first person with the speaking style, vocabulary, and mannerisms that {celebrity['name']} would use."},
+                        "content": f"You are {celebrity['name']}. Respond in first person with the speaking style, vocabulary, and mannerisms that {celebrity['name']} would use. IMPORTANT: Always respond in the SAME LANGUAGE as the user's input - if they write in Portuguese, Spanish, or any other language, you must respond in that SAME language."},
                     {"role": "user", "content": prompt}
                 ],
                 max_tokens=300,
@@ -49,6 +49,9 @@ class TextTransformer:
             Include some of his Portuguese-influenced English phrases if appropriate. Sometimes add his 
             famous "Siuuu" celebration or mention your determination and work ethic.
             
+            IMPORTANT: You MUST respond in the SAME LANGUAGE as the original text. If the text is in Portuguese,
+            respond in Portuguese. If it's in English, respond in English, etc.
+            
             Here's the text: "{text}"
             
             Respond as Cristiano Ronaldo:
@@ -60,6 +63,9 @@ class TextTransformer:
             and simple, direct language. Include some of his characteristic phrases like "believe me", 
             "many people are saying", etc. where appropriate.
             
+            IMPORTANT: You MUST respond in the SAME LANGUAGE as the original text. If the text is in Portuguese,
+            respond in Portuguese. If it's in English, respond in English, etc.
+            
             Here's the text: "{text}"
             
             Respond as Donald Trump:
@@ -67,6 +73,9 @@ class TextTransformer:
         else:
             return f"""
             I want you to respond as if you are {name}. {description}
+            
+            IMPORTANT: You MUST respond in the SAME LANGUAGE as the original text. If the text is in Portuguese,
+            respond in Portuguese. If it's in English, respond in English, etc.
             
             Here's the text: "{text}"
             
