@@ -28,14 +28,19 @@ st.set_page_config(
 
 
 def autoplay_audio(file_path):
-    """Autoplay audio in Streamlit"""
+    """Autoplay audio in Streamlit with iOS Safari compatibility"""
     with open(file_path, "rb") as f:
         audio_bytes = f.read()
 
     audio_base64 = base64.b64encode(audio_bytes).decode()
+
+    # Determine MIME type based on file extension
+    mime_type = "audio/mp3" if file_path.endswith(".mp3") else "audio/wav"
+
     html = f"""
-    <audio autoplay>
-      <source src="data:audio/wav;base64,{audio_base64}" type="audio/wav">
+    <audio controls>
+        <source src="data:{mime_type};base64,{audio_base64}" type="{mime_type}">
+        Your browser does not support the audio element.
     </audio>
     """
     st.markdown(html, unsafe_allow_html=True)
@@ -141,8 +146,7 @@ with tab1:
                 height=150
             )
 
-            # Display and autoplay celebrity audio
-            st.audio(st.session_state["output_file"])
+            # Display audio with custom player only
             autoplay_audio(st.session_state["output_file"])
 
             # Download button
@@ -150,8 +154,8 @@ with tab1:
                 st.download_button(
                     label="💾 Download Audio",
                     data=f,
-                    file_name=f"{CELEBRITIES[selected_celebrity]['name']}_voice.wav",
-                    mime="audio/wav",
+                    file_name=f"{CELEBRITIES[selected_celebrity]['name']}_voice.mp3",
+                    mime="audio/mp3",
                     use_container_width=True
                 )
         else:
@@ -209,8 +213,7 @@ with tab2:
                 height=150
             )
 
-            # Display and autoplay celebrity audio
-            st.audio(st.session_state["text_output_file"])
+            # Display audio with custom player only
             autoplay_audio(st.session_state["text_output_file"])
 
             # Download button
@@ -218,8 +221,8 @@ with tab2:
                 st.download_button(
                     label="💾 Download Audio",
                     data=f,
-                    file_name=f"{CELEBRITIES[selected_celebrity]['name']}_text_voice.wav",
-                    mime="audio/wav",
+                    file_name=f"{CELEBRITIES[selected_celebrity]['name']}_text_voice.mp3",
+                    mime="audio/mp3",
                     use_container_width=True
                 )
         else:

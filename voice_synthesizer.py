@@ -25,7 +25,7 @@ class TTSRequest(BaseModel):
     reference_id: str  # This is the voice ID
     chunk_length: int = 200
     normalize: bool = True
-    format: Literal["wav", "pcm", "mp3", "opus"] = "wav"
+    format: Literal["wav", "mp3", "opus"] = "mp3"
     mp3_bitrate: Literal[64, 128, 192] = 192
     latency: Literal["normal", "balanced"] = "normal"
     model: Literal["speech-1.6"] = "speech-1.6"
@@ -114,7 +114,7 @@ class VoiceSynthesizer:
         request = TTSRequest(
             text=text,
             reference_id=voice_id,  # Use reference_id instead of voice_id
-            format="wav",
+            format="mp3",
             chunk_length=200,
             mp3_bitrate=192,
             model="speech-1.6",
@@ -220,7 +220,7 @@ class VoiceSynthesizer:
         data = {
             "text": text,
             "reference_id": voice_id,  # Use reference_id instead of voice_id
-            "format": "wav",
+            "format": "mp3",
             "chunk_length": 200,
             "mp3_bitrate": 192,
             "model": "speech-1.6",

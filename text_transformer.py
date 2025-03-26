@@ -10,6 +10,8 @@ class TextTransformer:
         self.client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
     def transform_text(self, text, celebrity_id):
+        return text
+
         """Transform text to mimic a celebrity's speaking style"""
         # Get celebrity info
         if celebrity_id not in CELEBRITIES:

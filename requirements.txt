@@ -9,5 +9,4 @@ SpeechRecognition==3.10.1
 pydub==0.25.1
 httpx==0.24.1
 pydantic==2.5.2
-ormsgpack==1.3.0
 pyngrok 

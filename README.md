@@ -1,77 +1,124 @@
-# Celebrity Voice Transformer
+# Voice Processing Application
 
-This application captures audio from a microphone, transcribes it to text, transforms it using OpenAI's API to mimic celebrity speech patterns, and then uses Fish Audio API to generate speech in the celebrity's voice.
+This application captures audio from a microphone, transcribes it to text using Fish Audio's ASR API, and then synthesizes speech using Fish Audio's TTS API.
 
 ## Features
 
--   Audio recording from external microphone
--   Speech-to-text conversion
--   Text transformation in the style of celebrities (currently Cristiano Ronaldo and Donald Trump)
--   Voice synthesis using Fish Audio API
--   Simple Streamlit UI
+-   Audio recording with device selection (USB, built-in, or other microphones)
+-   Speech-to-text conversion using Fish Audio ASR API (with Google Speech Recognition fallback)
+-   Text-to-speech synthesis using Fish Audio API
+-   Remote access through ngrok tunneling
+-   Modern Streamlit UI with settings management
+-   Support for multiple languages
 
 ## Requirements
 
--   Raspberry Pi with Raspbian OS
--   External microphone
+-   Raspberry Pi with Raspbian OS (or any Linux/macOS system)
+-   Microphone (USB or built-in)
 -   Python 3.9+
--   OpenAI API key
 -   Fish Audio API key
+-   Ngrok auth token (optional, for remote access)
 
 ## Installation
 
-1. Clone this repository to your Raspberry Pi:
+1. Clone this repository:
 
-```
-git clone <repository-url>
-cd <repository-directory>
-```
-
-2. Install the required dependencies:
-
-```
-pip install -r requirements.txt
+```bash
+git clone https://github.com/marcelofeitoza/gestao-redes-projeto.git
+cd gestao-redes-projeto
 ```
 
-3. Install PortAudio (required for PyAudio):
+2. Run the setup script (this will install all dependencies):
 
-```
-sudo apt-get install portaudio19-dev
+```bash
+sudo ./setup_raspberry_pi.sh
 ```
 
-4. Create a `.env` file in the project root directory with your API keys:
+The setup script will:
 
-```
-OPENAI_API_KEY=your_openai_api_key
-FISH_AUDIO_API_KEY=your_fish_audio_api_key
+-   Install system dependencies
+-   Create a Python virtual environment
+-   Install Python packages
+-   Set up ngrok for remote access
+-   Create necessary directories
+-   Generate a template .env file
+
+3. Configure your API key in the `.env` file:
+
+```bash
+# Fish Audio API Key for voice synthesis and speech recognition
+FISH_API_KEY=your_fish_audio_api_key_here
+
+# Ngrok auth token (optional, for remote access)
+NGROK_AUTH_TOKEN=your_ngrok_auth_token_here
 ```
 
 ## Usage
 
 1. Start the application:
 
-```
-streamlit run app.py
+```bash
+./launch.sh
 ```
 
-2. Access the application through a web browser at `http://localhost:8501` or the IP address of your Raspberry Pi.
+2. The app will:
 
-3. Select a celebrity, record your voice, and enjoy the transformed output!
+    - Start the Streamlit interface
+    - Set up an ngrok tunnel (if configured)
+    - Display both local and public URLs
+
+3. Access the application through:
+    - Local network: `http://localhost:8501` or `http://raspberry-pi-IP:8501`
+    - Remote access: Use the ngrok URL provided in the console
+
+## Features Guide
+
+### Microphone Input
+
+-   Select your preferred audio input device in the Settings tab
+-   Record your voice using the selected device
+-   View the transcription in real-time
+
+### Text Input
+
+-   Type or paste text directly
+-   Convert text to speech
+
+### Settings
+
+-   Toggle between Fish Audio and Google Speech Recognition
+-   Select audio input devices
+-   View API and connection status
 
 ## Project Structure
 
 -   `app.py`: Main Streamlit application
--   `audio_processor.py`: Audio recording and processing functions
--   `text_transformer.py`: OpenAI API integration for text transformation
+-   `audio_processor.py`: Audio recording and device management
 -   `voice_synthesizer.py`: Fish Audio API integration for voice synthesis
+-   `speech_recognizer.py`: Fish Audio ASR integration
+-   `tunnel.py`: Ngrok tunnel management
 -   `config.py`: Configuration settings
 -   `utils.py`: Utility functions
+-   `run.py`: Application launcher with tunnel setup
 
 ## Troubleshooting
 
--   If you encounter issues with the microphone, check that it's properly connected and recognized by your Raspberry Pi.
--   Use `arecord -l` to list available recording devices.
--   Ensure your API keys are correctly set in the `.env` file.
+-   If you encounter issues with the microphone:
+
+    -   Check the Settings tab for available devices
+    -   Select the appropriate input device
+    -   Verify system permissions for audio access
+
+-   For remote access issues:
+
+    -   Try the HTTP URL if HTTPS doesn't work
+    -   If behind a corporate firewall, try a personal network
+    -   Check your ngrok authentication token
+
+-   For API-related issues:
+    -   Verify your API key in the .env file
+    -   Check your API usage quota
+    -   Ensure network connectivity
 
 ## License
 

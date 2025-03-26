@@ -39,85 +39,93 @@ else
     USER_HOME=$HOME
 fi
 
-print_status "Starting setup for Celebrity Voice Transformer..."
+print_status "Starting setup for Voice Processing Application..."
 
-# Update package lists
-print_status "Updating package lists..."
-apt-get update
+# Function to check if a package is installed
+is_package_installed() {
+    dpkg -l "$1" &> /dev/null
+}
 
-# Install system dependencies
-print_status "Installing system dependencies..."
-apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-venv \
-    portaudio19-dev \
-    libportaudio2 \
-    ffmpeg \
-    libatlas-base-dev \
-    libhdf5-dev \
-    libhdf5-serial-dev \
-    libjasper-dev \
-    libqtgui4 \
-    libqt4-test \
-    libasound2-dev \
-    git
+# Create a list of packages to install
+PACKAGES_TO_INSTALL=()
 
-# Create project directory
-PROJECT_DIR="$USER_HOME/celebrity-voice-transformer"
-if [ ! -d "$PROJECT_DIR" ]; then
-    print_status "Creating project directory..."
-    mkdir -p "$PROJECT_DIR"
-    chown -R "$SUDO_USER:$SUDO_USER" "$PROJECT_DIR"
-fi
+# Check each package and add to installation list if not present
+REQUIRED_PACKAGES=(
+    "python3"
+    "python3-pip"
+    "python3-venv"
+    "portaudio19-dev"
+    "libportaudio2"
+    "ffmpeg"
+    "libatlas-base-dev"
+    "libhdf5-dev"
+    "libasound2-dev"
+    "git"
+    "curl"
+    "build-essential"
+    "pkg-config"
+    "libssl-dev"
+    "flac"
+)
 
-# Change to project directory
-cd "$PROJECT_DIR"
-
-# Create Python virtual environment
-print_status "Creating Python virtual environment..."
-if [ ! -d "$PROJECT_DIR/venv" ]; then
-    sudo -u "$SUDO_USER" python3 -m venv venv
-fi
-
-# Clone or copy project files if not already present
-if [ ! -f "$PROJECT_DIR/app.py" ]; then
-    print_status "Copying project files..."
-    
-    # If the script is run from within the project directory, copy files
-    if [ -f "$(dirname "$0")/app.py" ]; then
-        cp -r "$(dirname "$0")"/* "$PROJECT_DIR"
-        chown -R "$SUDO_USER:$SUDO_USER" "$PROJECT_DIR"
-    else
-        print_warning "Project files not found in script directory."
-        print_warning "Please manually copy project files to $PROJECT_DIR"
+for package in "${REQUIRED_PACKAGES[@]}"; do
+    if ! is_package_installed "$package"; then
+        PACKAGES_TO_INSTALL+=("$package")
     fi
+done
+
+# Only update and install if there are packages to install
+if [ ${#PACKAGES_TO_INSTALL[@]} -gt 0 ]; then
+    print_status "Installing missing system dependencies: ${PACKAGES_TO_INSTALL[*]}"
+    apt-get -qq update > /dev/null 2>&1
+    apt-get -qq install --no-install-recommends -y "${PACKAGES_TO_INSTALL[@]}" > /dev/null 2>&1
+else
+    print_status "All system dependencies are already installed"
 fi
 
-# Create required directories
+# Use current directory instead of creating a new one
+PROJECT_DIR=$(pwd)
+print_status "Using current directory: $PROJECT_DIR"
+
+# Create required directories if they don't exist
 print_status "Creating required directories..."
 sudo -u "$SUDO_USER" mkdir -p "$PROJECT_DIR/temp_audio"
 sudo -u "$SUDO_USER" mkdir -p "$PROJECT_DIR/output_audio"
 
-# Install Python dependencies
-print_status "Installing Python dependencies..."
-sudo -u "$SUDO_USER" "$PROJECT_DIR/venv/bin/pip" install --upgrade pip
-sudo -u "$SUDO_USER" "$PROJECT_DIR/venv/bin/pip" install -r "$PROJECT_DIR/requirements.txt"
+# Create Python virtual environment only if it doesn't exist
+print_status "Checking Python virtual environment..."
+if [ ! -d "$PROJECT_DIR/.venv" ]; then
+    print_status "Creating new virtual environment..."
+    sudo -u "$SUDO_USER" python3 -m venv .venv
+else
+    print_status "Virtual environment already exists"
+fi
 
-# Ensure ormsgpack is installed (needed for Fish Audio ASR API)
-print_status "Installing ormsgpack for Fish Audio ASR API..."
-sudo -u "$SUDO_USER" "$PROJECT_DIR/venv/bin/pip" install ormsgpack
+# Install Python dependencies only if requirements.txt has changed
+REQUIREMENTS_HASH_FILE="$PROJECT_DIR/.venv/.requirements.hash"
+CURRENT_HASH=$(md5sum requirements.txt | cut -d' ' -f1)
+STORED_HASH=""
+if [ -f "$REQUIREMENTS_HASH_FILE" ]; then
+    STORED_HASH=$(cat "$REQUIREMENTS_HASH_FILE")
+fi
+
+if [ "$CURRENT_HASH" != "$STORED_HASH" ]; then
+    print_status "Installing/updating Python dependencies..."
+    sudo -u "$SUDO_USER" bash -c "source .venv/bin/activate && \
+        pip install --no-cache-dir --no-deps --upgrade pip > /dev/null 2>&1 && \
+        pip install --no-cache-dir wheel > /dev/null 2>&1 && \
+        pip install --no-cache-dir -r requirements.txt > /dev/null 2>&1"
+    echo "$CURRENT_HASH" > "$REQUIREMENTS_HASH_FILE"
+else
+    print_status "Python dependencies are up to date"
+fi
 
 # Check for .env file
 if [ ! -f "$PROJECT_DIR/.env" ]; then
     print_status "Creating example .env file..."
     sudo -u "$SUDO_USER" cp "$PROJECT_DIR/.env.example" "$PROJECT_DIR/.env" 2>/dev/null || \
     cat > "$PROJECT_DIR/.env" << EOL
-# Celebrity Voice Transformer Environment Variables
-
-# OpenAI API Key
-# Get this from https://platform.openai.com/account/api-keys
-OPENAI_API_KEY=your_openai_api_key_here
+# Voice Processing Application Environment Variables
 
 # Fish Audio API Key
 # Get this from https://fish.audio/ after creating an account
@@ -132,48 +140,92 @@ EOL
     print_warning "Don't forget to add your API keys to the .env file!"
 fi
 
-# Create a launcher script
+# Create or update launcher script
 print_status "Creating launcher script..."
-cat > "$PROJECT_DIR/run_app.sh" << EOL
+cat > "$PROJECT_DIR/launch.sh" << 'EOL'
 #!/bin/bash
-cd "\$(dirname "\$0")"
-source venv/bin/activate
-streamlit run app.py
+
+# Set up error handling
+set -e
+trap 'echo "An error occurred. Application failed to start."' ERR
+
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Function for status messages
+print_status() {
+    echo -e "${GREEN}[INFO]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# Change to script directory
+cd "$(dirname "$0")"
+
+# Check if virtual environment exists
+if [ ! -d ".venv" ]; then
+    print_error "Virtual environment not found. Please run setup_raspberry_pi.sh first"
+    exit 1
+fi
+
+# Check if required files exist
+for file in "app.py" "run.py" "requirements.txt"; do
+    if [ ! -f "$file" ]; then
+        print_error "Required file $file not found"
+        exit 1
+    fi
+done
+
+# Check if .env exists and has API keys
+if [ ! -f ".env" ]; then
+    print_error ".env file not found. Please create it from .env.example"
+    exit 1
+fi
+
+# Activate virtual environment and run the application
+print_status "Starting Voice Processing Application..."
+source .venv/bin/activate
+
+# Check if all required Python packages are installed
+if ! pip freeze > /dev/null 2>&1; then
+    print_error "Python packages not properly installed. Try running setup_raspberry_pi.sh again"
+    exit 1
+fi
+
+# Run the application
+print_status "Launching application..."
+python run.py
 EOL
 
-chmod +x "$PROJECT_DIR/run_app.sh"
-chown "$SUDO_USER:$SUDO_USER" "$PROJECT_DIR/run_app.sh"
+# Make the launcher executable and set proper ownership
+chmod +x "$PROJECT_DIR/launch.sh"
+chown "$SUDO_USER:$SUDO_USER" "$PROJECT_DIR/launch.sh"
 
-# Create a service file for autostart (optional)
-print_status "Creating systemd service file (optional)..."
-cat > "/etc/systemd/system/celebrity-voice-transformer.service" << EOL
-[Unit]
-Description=Celebrity Voice Transformer
-After=network.target
+print_status "Launch script created at $PROJECT_DIR/launch.sh"
 
-[Service]
-User=$SUDO_USER
-WorkingDirectory=$PROJECT_DIR
-ExecStart=$PROJECT_DIR/venv/bin/streamlit run app.py
-Restart=on-failure
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-EOL
-
-# Add ngrok installation to the script
+# Install ngrok only if not already installed
 if ! command -v ngrok &> /dev/null; then
-    echo "Installing ngrok..."
-    curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
-    echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
-    sudo apt update && sudo apt install ngrok
+    print_status "Installing ngrok..."
+    if ! grep -q "ngrok-agent" /etc/apt/sources.list.d/ngrok.list 2>/dev/null; then
+        curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+        echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list >/dev/null
+        apt-get -qq update > /dev/null 2>&1
+    fi
+    apt-get -qq install -y ngrok > /dev/null 2>&1
+else
+    print_status "ngrok is already installed"
 fi
 
 print_status "Setup complete!"
-print_status "You can now run the app by executing: $PROJECT_DIR/run_app.sh"
-print_status "Or start the service with: sudo systemctl start celebrity-voice-transformer"
-print_status "To enable automatic startup on boot: sudo systemctl enable celebrity-voice-transformer"
+print_status "You can now run the app by executing: ./launch.sh"
 print_warning "Make sure to edit the .env file with your API keys before running the app!"
-print_warning "Access the app via web browser at http://raspberry-pi-IP:8501"
-print_status "The app now supports both Text-to-Speech (TTS) and Speech-to-Text (ASR) using Fish Audio API" 
+print_status "The app supports both Text-to-Speech (TTS) and Speech-to-Text (ASR) using Fish Audio API" 
