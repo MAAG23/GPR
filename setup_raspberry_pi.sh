@@ -123,6 +123,10 @@ OPENAI_API_KEY=your_openai_api_key_here
 # Get this from https://fish.audio/ after creating an account
 # This key is used for both TTS (Text-to-Speech) and ASR (Automatic Speech Recognition)
 FISH_API_KEY=your_fish_audio_api_key_here
+
+# Ngrok configuration (optional)
+# Get your auth token from https://dashboard.ngrok.com/get-started/your-authtoken
+NGROK_AUTH_TOKEN=your_ngrok_auth_token_here
 EOL
     chown "$SUDO_USER:$SUDO_USER" "$PROJECT_DIR/.env"
     print_warning "Don't forget to add your API keys to the .env file!"
@@ -157,6 +161,14 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOL
+
+# Add ngrok installation to the script
+if ! command -v ngrok &> /dev/null; then
+    echo "Installing ngrok..."
+    curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+    echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+    sudo apt update && sudo apt install ngrok
+fi
 
 print_status "Setup complete!"
 print_status "You can now run the app by executing: $PROJECT_DIR/run_app.sh"

@@ -228,38 +228,70 @@ with tab2:
 
 # Tab 3: Settings
 with tab3:
-    st.header("Application Settings")
+    st.header("Settings")
 
-    # Transcription service section
-    st.subheader("Speech-to-Text Service")
+    # Audio Input Device Selection
+    st.subheader("🎙️ Audio Input Device")
+    input_devices = audio_processor.get_available_input_devices()
 
-    st.write(
-        f"Currently using: **{audio_processor.get_current_transcription_service()}**")
+    # Format device options for the selectbox
+    device_options = {str(device['index']): f"{device['name']} ({device['channels']} channels, {device['sample_rate']}Hz)"
+                      for device in input_devices}
 
-    # Toggle transcription service
-    if st.button("Toggle Speech Recognition Service", key="toggle_service"):
+    # Get current device info
+    current_device = audio_processor.get_current_device_info()
+    current_device_index = str(current_device.get('index', '0'))
+
+    # Device selection dropdown
+    selected_device = st.selectbox(
+        "Select Audio Input Device",
+        options=list(device_options.keys()),
+        format_func=lambda x: device_options[x],
+        index=list(device_options.keys()).index(
+            current_device_index) if current_device_index in device_options else 0
+    )
+
+    # Apply device selection
+    if selected_device:
+        if audio_processor.set_input_device(int(selected_device)):
+            st.success(
+                f"Successfully set input device to: {device_options[selected_device]}")
+        else:
+            st.error("Failed to set input device. Please try another device.")
+
+    # Device Information
+    st.info("""
+    💡 **Tips for Audio Input:**
+    - Make sure your microphone is properly connected and recognized
+    - Test the microphone in your system settings first
+    - If using a USB microphone, try unplugging and plugging it back in if not detected
+    - Some devices might require system permissions to access
+    """)
+
+    # Transcription Service Settings
+    st.subheader("🔄 Transcription Service")
+    current_service = audio_processor.get_current_transcription_service()
+    st.write(f"Current service: **{current_service}**")
+
+    if st.button("Toggle Transcription Service", use_container_width=True):
         new_service = audio_processor.toggle_transcription_service()
-        st.success(f"Switched to {new_service} for speech recognition")
+        st.success(f"Switched to: {new_service}")
 
-    st.markdown("""
-    ### About the Speech Recognition Services
-    
-    **Fish Audio Speech-to-Text:** Advanced speech recognition using Fish Audio's API. 
-    Provides high-quality transcription with optional detailed timestamp information.
-    
-    **Google Speech Recognition:** Traditional speech recognition using Google's service.
-    Used as a fallback if Fish Audio is unavailable.
+    st.info("""
+    **About the Transcription Services:**
+    - **Fish Audio**: Primary service with high accuracy
+    - **Google Speech Recognition**: Fallback service, works offline
+    Choose the service that works best for your needs.
     """)
 
     # API Information
-    st.subheader("API Information")
-    st.info("""
-    This application uses two external APIs:
+    st.subheader("🔑 API Information")
+    st.markdown("""
+    This application uses the following external APIs:
+    - **OpenAI API**: For text transformation
+    - **Fish Audio API**: For voice synthesis and speech recognition
     
-    1. **OpenAI API** - For text transformation to match celebrity speaking styles
-    2. **Fish Audio API** - For voice synthesis and speech recognition
-    
-    Make sure your API keys are correctly configured in the .env file.
+    Make sure your API keys are properly configured in the `.env` file.
     """)
 
 # Cleanup temp files when app is closed (this won't always work in Streamlit)

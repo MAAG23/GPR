@@ -24,6 +24,7 @@ class AudioProcessor:
         self.fish_recognizer = SpeechRecognizer()  # Initialize Fish Audio recognizer
         self.p = pyaudio.PyAudio()
         self.use_fish_audio = True  # Set to True to use Fish Audio, False to use Google
+        self.selected_device_index = None  # Default to system default device
         ensure_directory_exists(TEMP_AUDIO_DIR)
 
     def __del__(self):
@@ -31,17 +32,53 @@ class AudioProcessor:
         if hasattr(self, 'p'):
             self.p.terminate()
 
+    def get_available_input_devices(self):
+        """Get a list of available audio input devices"""
+        input_devices = []
+        for i in range(self.p.get_device_count()):
+            device_info = self.p.get_device_info_by_index(i)
+            if device_info['maxInputChannels'] > 0:  # If it's an input device
+                name = device_info['name']
+                input_devices.append({
+                    'index': i,
+                    'name': name,
+                    'channels': device_info['maxInputChannels'],
+                    'sample_rate': int(device_info['defaultSampleRate'])
+                })
+        return input_devices
+
+    def set_input_device(self, device_index):
+        """Set the audio input device by its index"""
+        if device_index is not None:
+            device_info = self.p.get_device_info_by_index(device_index)
+            if device_info['maxInputChannels'] > 0:
+                self.selected_device_index = device_index
+                logger.info(f"Selected input device: {device_info['name']}")
+                return True
+        return False
+
+    def get_current_device_info(self):
+        """Get information about the currently selected input device"""
+        if self.selected_device_index is not None:
+            return self.p.get_device_info_by_index(self.selected_device_index)
+        return self.p.get_default_input_device_info()
+
     def record_audio(self, seconds=None):
-        """Record audio from the microphone and save to a temporary WAV file"""
+        """Record audio from the selected microphone and save to a temporary WAV file"""
         if seconds is None:
             seconds = RECORD_SECONDS
 
-        # Open stream
+        # Get device info for the selected or default device
+        device_info = self.get_current_device_info()
+        logger.info(f"Recording using device: {device_info['name']}")
+
+        # Open stream with the selected device
         stream = self.p.open(
             format=self.p.get_format_from_width(2),  # 16-bit format
             channels=CHANNELS,
             rate=SAMPLE_RATE,
             input=True,
+            input_device_index=self.selected_device_index,  # Use selected device
             frames_per_buffer=CHUNK_SIZE
         )
 
@@ -49,7 +86,7 @@ class AudioProcessor:
 
         frames = []
         for i in range(0, int(SAMPLE_RATE / CHUNK_SIZE * seconds)):
-            data = stream.read(CHUNK_SIZE)
+            data = stream.read(CHUNK_SIZE, exception_on_overflow=False)
             frames.append(data)
 
         logger.info("Recording finished.")
