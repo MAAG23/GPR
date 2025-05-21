@@ -1,0 +1,4 @@
+streamlit
+python-nmap
+pandas
+# The standard logging module is part of Python's standard library, so no need to add it

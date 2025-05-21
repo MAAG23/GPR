@@ -1,0 +1,225 @@
+2025-05-21 20:07:37,137 - INFO - Iniciando aplicação com log em: data/logs/app_20250521.log
+2025-05-21 20:07:55,175 - INFO - Iniciando aplicação
+2025-05-21 20:07:57,905 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:07:58,063 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:07:58,107 - INFO - Aplicação pronta
+2025-05-21 20:08:00,691 - INFO - Iniciando aplicação
+2025-05-21 20:08:00,727 - INFO - Iniciando rastreio de rede
+2025-05-21 20:08:00,737 - INFO - Iniciando rastreio de rede
+2025-05-21 20:08:01,511 - INFO - Range de rede: 192.168.6.0/24
+2025-05-21 20:08:01,513 - INFO - Executando nmap em 192.168.6.0/24
+2025-05-21 20:08:57,007 - INFO - Scan concluído. Hosts encontrados: 8
+2025-05-21 20:08:57,061 - INFO - Host 192.168.6.1: 2 portas abertas
+2025-05-21 20:08:57,083 - INFO - Host 192.168.6.20: 2 portas abertas
+2025-05-21 20:08:57,108 - INFO - Host 192.168.6.21: 1 portas abertas
+2025-05-21 20:08:57,118 - INFO - Host 192.168.6.22: 2 portas abertas
+2025-05-21 20:08:57,120 - INFO - Host 192.168.6.26: 1 portas abertas
+2025-05-21 20:08:57,121 - INFO - Host 192.168.6.27: 1 portas abertas
+2025-05-21 20:08:57,123 - INFO - Host 192.168.6.30: 1 portas abertas
+2025-05-21 20:08:57,125 - INFO - Host 192.168.6.34: 1 portas abertas
+2025-05-21 20:08:57,127 - INFO - Rastreio concluído: 8 dispositivos
+2025-05-21 20:08:57,263 - INFO - Rastreio concluído: 8 dispositivos
+2025-05-21 20:08:59,300 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:08:59,498 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:08:59,628 - INFO - Aplicação pronta
+2025-05-21 20:09:50,649 - INFO - Iniciando aplicação
+2025-05-21 20:09:50,848 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:09:50,954 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:09:50,974 - INFO - Iniciando captura Wi-Fi na interface wlan0
+2025-05-21 20:09:50,978 - INFO - Iniciando captura. Interface: wlan0, Canal: 
+2025-05-21 20:09:50,982 - INFO - Comando: airodump-ng -w data/capturas/captura_20250521_200950 wlan0
+2025-05-21 20:09:50,997 - INFO - Processo iniciado (PID: 3310)
+2025-05-21 20:09:51,021 - INFO - Aplicação pronta
+2025-05-21 20:11:04,604 - INFO - Iniciando aplicação
+2025-05-21 20:11:04,805 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:11:04,916 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:11:04,940 - INFO - Parando captura Wi-Fi
+2025-05-21 20:11:04,942 - INFO - Parando captura (PID: 3310)
+2025-05-21 20:11:04,945 - INFO - Captura encerrada
+2025-05-21 20:11:04,964 - INFO - Aplicação pronta
+2025-05-21 20:12:34,805 - INFO - Iniciando aplicação
+2025-05-21 20:12:40,893 - INFO - Iniciando aplicação
+2025-05-21 20:12:53,871 - INFO - Iniciando aplicação
+2025-05-21 20:12:54,063 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:12:54,265 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:12:54,327 - INFO - Tentando desbloquear ZIP: Desktop.zip
+2025-05-21 20:12:54,471 - INFO - Tentando desbloquear: tmptuxrfk48
+2025-05-21 20:12:55,608 - INFO - Arquivo ZIP contém 2 itens
+2025-05-21 20:12:55,609 - INFO - Wordlist contém 8 senhas
+2025-05-21 20:12:56,422 - INFO - Senha encontrada: '12345'
+2025-05-21 20:12:56,424 - INFO - Senha encontrada: 12345
+2025-05-21 20:12:57,205 - INFO - Aplicação pronta
+2025-05-21 20:13:13,265 - INFO - Iniciando aplicação
+2025-05-21 20:13:13,463 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:13:13,500 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:13:13,530 - INFO - Aplicação pronta
+2025-05-21 20:13:14,204 - INFO - Iniciando aplicação
+2025-05-21 20:13:14,390 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:13:14,426 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:13:14,463 - INFO - Tentando desbloquear ZIP: teste2.zip
+2025-05-21 20:13:14,482 - INFO - Tentando desbloquear: tmpj6s5u0fk
+2025-05-21 20:13:14,484 - INFO - Arquivo ZIP contém 2 itens
+2025-05-21 20:13:14,486 - INFO - Wordlist contém 8 senhas
+2025-05-21 20:13:14,499 - INFO - Nenhuma senha funcionou (8 tentativas)
+2025-05-21 20:13:14,500 - INFO - Nenhuma senha funcionou
+2025-05-21 20:13:14,511 - INFO - Aplicação pronta
+2025-05-21 20:13:33,104 - INFO - Iniciando aplicação
+2025-05-21 20:13:33,295 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:13:33,335 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:13:33,363 - INFO - Aplicação pronta
+2025-05-21 20:13:34,368 - INFO - Iniciando aplicação
+2025-05-21 20:13:34,530 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:13:34,560 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:13:34,589 - INFO - Tentando desbloquear ZIP: teste2.zip
+2025-05-21 20:13:34,602 - INFO - Tentando desbloquear: tmpnhkoypgz
+2025-05-21 20:13:34,605 - INFO - Arquivo ZIP contém 2 itens
+2025-05-21 20:13:34,606 - INFO - Wordlist contém 9 senhas
+2025-05-21 20:13:35,230 - INFO - Senha encontrada: 'teste'
+2025-05-21 20:13:35,248 - INFO - Senha encontrada: teste
+2025-05-21 20:13:35,274 - INFO - Aplicação pronta
+2025-05-21 20:14:24,187 - INFO - Iniciando aplicação
+2025-05-21 20:14:24,212 - INFO - Iniciando rastreio de rede
+2025-05-21 20:14:24,216 - INFO - Iniciando rastreio de rede
+2025-05-21 20:14:24,725 - INFO - Range de rede: 192.168.6.0/24
+2025-05-21 20:14:24,725 - INFO - Executando nmap em 192.168.6.0/24
+2025-05-21 20:17:21,152 - INFO - Scan concluído. Hosts encontrados: 7
+2025-05-21 20:17:21,246 - INFO - Host 192.168.6.1: 2 portas abertas
+2025-05-21 20:17:21,247 - INFO - Host 192.168.6.20: 2 portas abertas
+2025-05-21 20:17:21,249 - INFO - Host 192.168.6.22: 2 portas abertas
+2025-05-21 20:17:21,252 - INFO - Host 192.168.6.23: 1 portas abertas
+2025-05-21 20:17:21,253 - INFO - Host 192.168.6.27: 1 portas abertas
+2025-05-21 20:17:21,255 - INFO - Host 192.168.6.30: 1 portas abertas
+2025-05-21 20:17:21,255 - INFO - Host 192.168.6.34: 1 portas abertas
+2025-05-21 20:17:21,279 - INFO - Rastreio concluído: 7 dispositivos
+2025-05-21 20:17:21,432 - INFO - Rastreio concluído: 7 dispositivos
+2025-05-21 20:17:31,961 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:17:34,063 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:17:35,138 - INFO - Aplicação pronta
+2025-05-21 20:18:48,163 - INFO - Iniciando aplicação com log em: data/logs/app_20250521.log
+2025-05-21 20:19:02,014 - INFO - Iniciando aplicação
+2025-05-21 20:19:05,378 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:19:05,615 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:19:05,705 - INFO - Aplicação pronta
+2025-05-21 20:19:10,842 - INFO - Iniciando aplicação
+2025-05-21 20:19:11,009 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:19:11,040 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:19:11,060 - INFO - Iniciando captura Wi-Fi na interface wlan0
+2025-05-21 20:19:11,061 - INFO - Iniciando captura. Interface: wlan0, Canal: 
+2025-05-21 20:19:11,065 - INFO - Comando: airodump-ng -w data/capturas/captura_20250521_201911 wlan0
+2025-05-21 20:19:11,074 - INFO - Processo iniciado (PID: 4186)
+2025-05-21 20:19:11,106 - INFO - Aplicação pronta
+2025-05-21 20:19:40,216 - INFO - Iniciando aplicação
+2025-05-21 20:19:40,384 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:19:40,481 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:19:40,506 - INFO - Parando captura Wi-Fi
+2025-05-21 20:19:40,508 - INFO - Parando captura (PID: 4186)
+2025-05-21 20:19:40,511 - INFO - Captura encerrada
+2025-05-21 20:19:40,517 - INFO - Arquivos de captura encontrados: 0
+2025-05-21 20:19:40,520 - WARNING - Nenhum arquivo encontrado para o padrão: data/capturas/captura_20250521_201911*
+2025-05-21 20:19:40,542 - INFO - Aplicação pronta
+2025-05-21 20:21:43,744 - INFO - Iniciando aplicação com log em: data/logs/app_20250521.log
+2025-05-21 20:21:43,879 - INFO - Iniciando aplicação
+2025-05-21 20:21:52,084 - WARNING - O programa não está sendo executado como root! Algumas funcionalidades podem não funcionar.
+2025-05-21 20:21:52,086 - WARNING - Para funcionalidade completa, execute com 'sudo streamlit run app.py'
+2025-05-21 20:21:52,098 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:21:52,273 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:21:52,376 - INFO - Aplicação pronta
+2025-05-21 20:22:37,086 - INFO - Iniciando aplicação com log em: data/logs/app_20250521.log
+2025-05-21 20:22:58,308 - INFO - Iniciando aplicação
+2025-05-21 20:22:59,888 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:23:01,269 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:23:01,338 - INFO - Aplicação pronta
+2025-05-21 20:23:04,423 - INFO - Iniciando aplicação
+2025-05-21 20:23:04,593 - INFO - Detectando interfaces Wi-Fi
+2025-05-21 20:23:04,872 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:23:04,903 - INFO - Iniciando captura Wi-Fi na interface wlan0
+2025-05-21 20:23:04,910 - INFO - Iniciando captura. Interface: wlan0, Canal: 
+2025-05-21 20:23:04,912 - INFO - Colocando wlan0 em modo monitor
+2025-05-21 20:23:19,493 - INFO - Modo monitor habilitado. Nova interface: wlan0mon
+2025-05-21 20:23:21,012 - INFO - Comando: airodump-ng -w data/capturas/captura_20250521_202320 wlan0mon
+2025-05-21 20:23:21,558 - INFO - Processo iniciado (PID: 4975)
+2025-05-21 20:23:24,620 - ERROR - O processo terminou prematuramente com código 1
+2025-05-21 20:23:24,625 - ERROR - Erro ao iniciar captura: Falha ao iniciar captura - o processo terminou prematuramente
+2025-05-21 20:32:19,641 - INFO - Iniciando aplicação com log em: data/logs/app_20250521.log
+2025-05-21 20:32:51,736 - INFO - Iniciando aplicação
+2025-05-21 20:32:54,303 - INFO - Detectando interfaces de rede
+2025-05-21 20:32:54,528 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:32:54,931 - INFO - Aplicação pronta
+2025-05-21 20:33:18,115 - INFO - Iniciando aplicação com log em: data/logs/app_20250521.log
+2025-05-21 20:33:30,090 - INFO - Iniciando aplicação
+2025-05-21 20:33:35,165 - INFO - Iniciando aplicação
+2025-05-21 20:33:36,965 - INFO - Detectando interfaces de rede
+2025-05-21 20:33:37,079 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:33:37,129 - INFO - Aplicação pronta
+2025-05-21 20:33:45,223 - INFO - Iniciando aplicação
+2025-05-21 20:33:45,401 - INFO - Detectando interfaces de rede
+2025-05-21 20:33:45,414 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:33:45,433 - INFO - Iniciando captura na interface wlan0
+2025-05-21 20:33:45,439 - INFO - Iniciando captura. Interface: wlan0, Filtro: icmp or arp
+2025-05-21 20:33:45,441 - INFO - Comando: tcpdump -i wlan0 -w data/capturas/captura_20250521_203345.pcap -v -n -s 0 icmp or arp
+2025-05-21 20:33:45,459 - ERROR - Erro ao iniciar captura: [Errno 2] No such file or directory: 'tcpdump'
+2025-05-21 20:33:45,461 - ERROR - Erro ao iniciar captura: [Errno 2] No such file or directory: 'tcpdump'
+2025-05-21 20:33:45,490 - INFO - Aplicação pronta
+2025-05-21 20:35:59,868 - INFO - Iniciando aplicação
+2025-05-21 20:36:03,257 - INFO - Detectando interfaces de rede
+2025-05-21 20:36:03,452 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:36:03,649 - INFO - Aplicação pronta
+2025-05-21 20:36:10,577 - INFO - Iniciando aplicação
+2025-05-21 20:36:10,777 - INFO - Detectando interfaces de rede
+2025-05-21 20:36:10,852 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:36:10,870 - INFO - Iniciando captura na interface wlan0
+2025-05-21 20:36:10,873 - INFO - Iniciando captura. Interface: wlan0, Filtro: icmp or arp
+2025-05-21 20:36:10,875 - INFO - Comando: tcpdump -i wlan0 -w data/capturas/captura_20250521_203610.pcap -v -n -s 0 icmp or arp
+2025-05-21 20:36:11,884 - ERROR - Erro ao iniciar tcpdump: tcpdump: wlan0: You don't have permission to perform this capture on that device
+(socket: Operation not permitted)
+
+2025-05-21 20:36:11,886 - ERROR - Erro ao iniciar captura: Erro ao iniciar tcpdump: tcpdump: wlan0: You don't have permission to perform this capture on that device
+(socket: Operation not permitted)
+
+2025-05-21 20:36:11,888 - ERROR - Erro ao iniciar captura: Erro ao iniciar tcpdump: tcpdump: wlan0: You don't have permission to perform this capture on that device
+(socket: Operation not permitted)
+
+2025-05-21 20:36:11,918 - INFO - Aplicação pronta
+2025-05-21 20:36:52,459 - INFO - Iniciando aplicação com log em: data/logs/app_20250521.log
+2025-05-21 20:37:07,995 - INFO - Iniciando aplicação
+2025-05-21 20:37:09,484 - INFO - Detectando interfaces de rede
+2025-05-21 20:37:09,663 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:37:10,041 - INFO - Aplicação pronta
+2025-05-21 20:37:31,253 - INFO - Iniciando aplicação
+2025-05-21 20:37:31,279 - INFO - Iniciando rastreio de rede
+2025-05-21 20:37:31,288 - INFO - Iniciando rastreio de rede
+2025-05-21 20:37:31,709 - INFO - Range de rede: 192.168.6.0/24
+2025-05-21 20:37:31,710 - INFO - Executando nmap em 192.168.6.0/24
+2025-05-21 20:37:47,893 - INFO - Iniciando aplicação
+2025-05-21 20:37:48,572 - INFO - Detectando interfaces de rede
+2025-05-21 20:37:48,722 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:37:48,762 - INFO - Aplicação pronta
+2025-05-21 20:39:24,552 - INFO - Iniciando aplicação
+2025-05-21 20:39:28,260 - INFO - Detectando interfaces de rede
+2025-05-21 20:39:28,462 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:39:28,642 - INFO - Aplicação pronta
+2025-05-21 20:41:05,331 - INFO - Scan concluído. Hosts encontrados: 7
+2025-05-21 20:41:05,383 - INFO - Host 192.168.6.1: 2 portas abertas
+2025-05-21 20:41:05,415 - INFO - Host 192.168.6.21: 1 portas abertas
+2025-05-21 20:41:05,422 - INFO - Host 192.168.6.22: 2 portas abertas
+2025-05-21 20:41:05,440 - INFO - Host 192.168.6.23: 1 portas abertas
+2025-05-21 20:41:05,451 - INFO - Host 192.168.6.26: 1 portas abertas
+2025-05-21 20:41:05,468 - INFO - Host 192.168.6.27: 1 portas abertas
+2025-05-21 20:41:05,497 - INFO - Host 192.168.6.34: 1 portas abertas
+2025-05-21 20:41:05,517 - INFO - Rastreio concluído: 7 dispositivos
+2025-05-21 20:41:05,650 - INFO - Rastreio concluído: 7 dispositivos
+2025-05-21 20:41:31,499 - INFO - Iniciando aplicação
+2025-05-21 20:41:33,872 - INFO - Iniciando aplicação
+2025-05-21 20:41:42,101 - INFO - Detectando interfaces de rede
+2025-05-21 20:41:42,263 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:41:42,332 - INFO - Aplicação pronta
+2025-05-21 20:41:47,146 - INFO - Iniciando aplicação
+2025-05-21 20:41:47,304 - INFO - Detectando interfaces de rede
+2025-05-21 20:41:47,324 - INFO - Interfaces encontradas: ['wlan0']
+2025-05-21 20:41:47,368 - INFO - Tentando desbloquear ZIP: Desktop.zip
+2025-05-21 20:41:47,431 - INFO - Tentando desbloquear: tmps1j61wl_
+2025-05-21 20:41:47,496 - INFO - Arquivo ZIP contém 2 itens
+2025-05-21 20:41:47,499 - INFO - Wordlist contém 8 senhas
+2025-05-21 20:41:48,161 - INFO - Senha encontrada: '12345'
+2025-05-21 20:41:48,163 - INFO - Senha encontrada: 12345
+2025-05-21 20:41:48,175 - INFO - Aplicação pronta

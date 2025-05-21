@@ -1,0 +1,359 @@
+[
+  {
+    "timestamp": "2025-05-21 20:08:57",
+    "dispositivos": [
+      {
+        "ip": "192.168.6.1",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 80,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": ""
+          },
+          {
+            "porta": 443,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "https",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.20",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 445,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "microsoft-ds",
+            "versao": ""
+          },
+          {
+            "porta": 5000,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "rtsp",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.21",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 80,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": "Apache httpd 2.4.56"
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.22",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 3000,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": "Samsung AllShare httpd"
+          },
+          {
+            "porta": 5000,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "rtsp",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.26",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 49152,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "unknown",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.27",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 49152,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "tcpwrapped",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.30",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 22,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "ssh",
+            "versao": "OpenSSH 9.2p1 Debian 2+deb12u3"
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.34",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 22,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "ssh",
+            "versao": "OpenSSH 9.2p1 Debian 2+deb12u3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-21 20:17:21",
+    "dispositivos": [
+      {
+        "ip": "192.168.6.1",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 80,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": ""
+          },
+          {
+            "porta": 443,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "https",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.20",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 445,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "microsoft-ds",
+            "versao": ""
+          },
+          {
+            "porta": 5000,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "rtsp",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.22",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 3000,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": "Samsung AllShare httpd"
+          },
+          {
+            "porta": 5000,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "rtsp",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.23",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 80,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": "ShellyHTTP/1.0.0"
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.27",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 49152,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "tcpwrapped",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.30",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 22,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "ssh",
+            "versao": "OpenSSH 9.2p1 Debian 2+deb12u3"
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.34",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 22,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "ssh",
+            "versao": "OpenSSH 9.2p1 Debian 2+deb12u3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-21 20:41:05",
+    "dispositivos": [
+      {
+        "ip": "192.168.6.1",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 80,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": ""
+          },
+          {
+            "porta": 443,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "https",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.21",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 80,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": "Apache httpd 2.4.56"
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.22",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 3000,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": "Samsung AllShare httpd"
+          },
+          {
+            "porta": 5000,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "rtsp",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.23",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 80,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "http",
+            "versao": "ShellyHTTP/1.0.0"
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.26",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 49152,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "unknown",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.27",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 49152,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "tcpwrapped",
+            "versao": ""
+          }
+        ]
+      },
+      {
+        "ip": "192.168.6.34",
+        "hostname": "",
+        "portas": [
+          {
+            "porta": 22,
+            "estado": "open",
+            "protocolo": "tcp",
+            "servico": "ssh",
+            "versao": "OpenSSH 9.2p1 Debian 2+deb12u3"
+          }
+        ]
+      }
+    ]
+  }
+]
